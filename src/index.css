@@ -1,60 +1,169 @@
 @import "tailwindcss";
 
 @theme {
-  --color-accent: #1e3a5f;
-  --color-accent-light: #2d5a8e;
-  --color-accent-subtle: #e8eef4;
-  --color-medical: #0d9488;
-  --color-medical-light: #ccfbf1;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
+html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: var(--font-sans);
+  background: #050b14;
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
 }
 
-.section-container {
-  max-width: 56rem;
+/* ── Wider content ── */
+.content-col {
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 4rem 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+@media (max-width: 640px) {
+  .content-col { padding-left: 1.25rem; padding-right: 1.25rem; }
 }
 
-@media (min-width: 768px) {
-  .section-container {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
+/* ── Section ── */
+.section-divider {
+  border: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59,130,246,0.12), transparent);
 }
 
-.card {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
+/* ── Glass card ── */
+.glass {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  border-radius: 20px;
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+}
+.glass:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.08);
+  transform: translateY(-4px);
 }
 
-.card:hover {
-  border-color: rgba(30, 58, 95, 0.3);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+/* ── Section heading ── */
+.section-label {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #3b82f6; margin-bottom: 0.75rem;
+}
+.section-heading {
+  font-size: 2rem; font-weight: 700; color: #f1f5f9;
+  letter-spacing: -0.03em; margin-bottom: 2.5rem;
 }
 
-.accent-link {
-  color: var(--color-accent-light);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-color: rgba(30, 58, 95, 0.3);
-  transition: color 0.15s, text-decoration-color 0.15s;
+/* ── Tech tag ── */
+.tag {
+  display: inline-block; font-size: 0.7rem; font-weight: 500;
+  padding: 0.25rem 0.65rem; border-radius: 6px;
+  background: rgba(59, 130, 246, 0.12); color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  transition: all 0.2s;
+}
+.tag:hover { background: rgba(59, 130, 246, 0.22); border-color: rgba(59, 130, 246, 0.4); }
+
+/* ── Buttons ── */
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.8rem; font-weight: 500; padding: 0.55rem 1.2rem;
+  border-radius: 10px; border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #cbd5e1; transition: all 0.25s;
+}
+.btn-ghost:hover { border-color: rgba(59, 130, 246, 0.5); color: #fff; background: rgba(59,130,246,0.08); }
+
+.btn-accent {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.8rem; font-weight: 600; padding: 0.55rem 1.3rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #fff; transition: all 0.25s;
+}
+.btn-accent:hover { opacity: 0.9; transform: scale(1.03); box-shadow: 0 0 24px rgba(59,130,246,0.3); }
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.anim-up { animation: fadeUp 0.7s ease-out forwards; }
+.anim-up-1 { animation-delay: 0.1s; opacity: 0; }
+.anim-up-2 { animation-delay: 0.2s; opacity: 0; }
+.anim-up-3 { animation-delay: 0.3s; opacity: 0; }
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(59,130,246,0.05); }
+  50% { box-shadow: 0 0 40px rgba(59,130,246,0.15); }
+}
+.glow-pulse { animation: glowPulse 4s ease-in-out infinite; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.float { animation: float 5s ease-in-out infinite; }
+
+/* ── Image placeholder ── */
+.img-placeholder {
+  background: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(6,182,212,0.05) 50%, rgba(59,130,246,0.03) 100%);
+  border: 1px solid rgba(59,130,246,0.08);
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.img-placeholder::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(59,130,246,0.03) 100%);
 }
 
-.accent-link:hover {
-  color: var(--color-accent);
-  text-decoration-color: var(--color-accent);
+/* Hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Apple-style expand animation ── */
+.expand-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.expand-wrapper.open {
+  grid-template-rows: 1fr;
+}
+.expand-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Content stagger */
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.stagger-1 { animation: slideUpFade 0.5s 0.15s ease-out both; }
+.stagger-2 { animation: slideUpFade 0.5s 0.25s ease-out both; }
+.stagger-3 { animation: slideUpFade 0.5s 0.35s ease-out both; }
+
+/* Card expand pulse */
+@keyframes cardPulse {
+  0% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
+  50% { box-shadow: 0 0 20px 2px rgba(59,130,246,0.15); }
+  100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
+}
+.card-expand-pulse {
+  animation: cardPulse 0.6s ease-out;
+}
+
+/* Modal zoom-in */
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+.modal-in {
+  animation: modalIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }

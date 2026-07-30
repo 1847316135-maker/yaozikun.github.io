@@ -22,3 +22,13 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Project-specific (root only)
+/*.docx
+/*.jpg
+/*.JPG
+/*.PNG
+/成果/
+/yaozikun.*
+public/*.docx
+public/yaozikun.jpg

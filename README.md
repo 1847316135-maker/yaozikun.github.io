@@ -1,6 +1,6 @@
-# Ziqun Yao — Academic Homepage
+# Zikun Yao — Academic Homepage
 
-Personal academic homepage for **Ziqun Yao**, an undergraduate student in Biomedical Engineering at Shenzhen University.
+Personal academic homepage for **Zikun Yao**, an undergraduate student in Biomedical Engineering at Shenzhen University.
 
 **Live site:** [yaozikun.top](https://yaozikun.top)
 

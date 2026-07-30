@@ -1,84 +1,67 @@
-import { HiDocumentText } from 'react-icons/hi';
-
-interface Publication {
-  title: string;
-  status: 'Published' | 'Under Review' | 'Under Preparation';
-  venue?: string;
-  authors?: string;
-  note?: string;
-}
-
-const publications: Publication[] = [
-  {
-    title: 'Antimicrobial Resistance Prediction via Deep Learning and Genomic Context Modeling',
-    status: 'Under Preparation',
-  },
-  {
-    title: 'Protein Sequence Analysis with Bidirectional State Space Models',
-    status: 'Under Preparation',
-  },
-  {
-    title: 'A Knowledge-Enhanced Framework for Bacterial Drug Target Discovery',
-    status: 'Under Preparation',
-  },
-];
-
-const categoryLabels: Record<string, string> = {
-  papers: 'Research Papers',
-  conferences: 'Conference Presentations',
-  patents: 'Patents',
-  copyrights: 'Software Copyrights',
-};
-
 export default function Publications() {
   return (
-    <section id="publications" className="section-container border-t border-gray-100">
-      <p className="section-subtitle">Publications</p>
-      <h2 className="section-title mb-8">Publications & Research Outputs</h2>
+    <section id="publications" style={{ zIndex: 1, position: 'relative' }}>
+      <hr className="section-divider" />
+      <div className="content-col">
+        <p className="section-label">Publications & Outputs</p>
+        <h2 className="section-heading">Research Output</h2>
 
-      <div className="space-y-8">
-        {/* Research Papers */}
-        <div>
-          <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-            <HiDocumentText className="text-medical" size={20} />
-            Research Papers
-          </h3>
-          <ul className="space-y-3">
-            {publications.map((pub) => (
-              <li key={pub.title} className="card">
-                <p className="font-medium text-gray-800 mb-1">{pub.title}</p>
-                {pub.authors && (
-                  <p className="text-sm text-gray-500 mb-1">{pub.authors}</p>
-                )}
-                <div className="flex items-center gap-2">
-                  {pub.venue && (
-                    <span className="text-sm text-gray-600 italic">{pub.venue}</span>
-                  )}
-                  <span
-                    className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                      pub.status === 'Published'
-                        ? 'bg-green-50 text-green-700'
-                        : 'bg-amber-50 text-amber-700'
-                    }`}
-                  >
-                    {pub.status}
-                  </span>
+        <div className="space-y-8">
+
+          {/* SCI Paper */}
+          <div className="glass p-5">
+            <div className="flex items-start gap-3">
+              <span className="text-xs font-bold text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded shrink-0 mt-0.5">SCI</span>
+              <div>
+                <h3 className="text-sm font-semibold text-white leading-snug mb-1">
+                  Genome-wide investigation of outer membrane protein families under mosaic evolution in <i>Escherichia coli</i>
+                </h3>
+                <p className="text-xs text-slate-400 mb-1">
+                  Cao X, Cao C, Chen Z, Li J, <strong className="text-slate-200">Yao Z</strong>, Zheng Y, Wu J, Li Z, Hu Y, Hao G, Zhu G, Köster W, White AP, Wang Y
+                </p>
+                <div className="flex flex-wrap items-center gap-2 text-[0.7rem] text-slate-500">
+                  <span className="italic">Applied and Environmental Microbiology</span>
+                  <span>·</span>
+                  <span>2025</span>
+                  <span>·</span>
+                  <a href="https://doi.org/10.1128/aem.00557-25" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">
+                    DOI: 10.1128/aem.00557-25
+                  </a>
                 </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Other outputs */}
-        <div className="grid gap-6 md:grid-cols-3">
-          {['conferences', 'patents', 'copyrights'].map((cat) => (
-            <div key={cat} className="card text-center">
-              <h4 className="font-medium text-gray-800 mb-2">
-                {categoryLabels[cat]}
-              </h4>
-              <p className="text-sm text-gray-400 italic">—</p>
+              </div>
             </div>
-          ))}
+          </div>
+
+          {/* Software & Patent */}
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="glass p-5">
+              <span className="text-xs font-bold text-cyan-400 bg-cyan-500/10 px-1.5 py-0.5 rounded">Software</span>
+              <ul className="mt-3 space-y-2">
+                <li className="text-sm text-slate-300">
+                  <strong className="text-white">HVRClassify</strong>
+                  <span className="text-slate-500 ml-1">— HVR classification & analysis software</span>
+                </li>
+                <li className="text-sm text-slate-300">
+                  <strong className="text-white">MEscan</strong>
+                  <span className="text-slate-500 ml-1">— Mosaic evolution protein identification platform</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="glass p-5">
+              <span className="text-xs font-bold text-violet-400 bg-violet-500/10 px-1.5 py-0.5 rounded">Patent</span>
+              <ul className="mt-3 space-y-2">
+                <li className="text-sm text-slate-300">
+                  Intelligent comb based on Wood's lamp principle
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* In preparation */}
+          <p className="text-xs text-slate-500 italic text-center">
+            Additional manuscripts under preparation
+          </p>
         </div>
       </div>
     </section>

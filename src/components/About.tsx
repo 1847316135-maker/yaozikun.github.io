@@ -1,26 +1,20 @@
 export default function About() {
   return (
-    <section id="about" className="section-container border-t border-gray-100">
-      <p className="section-subtitle">About</p>
-      <h2 className="section-title mb-6">About Me</h2>
-
-      <div className="prose prose-gray max-w-none space-y-4 text-gray-600 leading-relaxed">
-        <p>
-          I am currently an undergraduate student in Biomedical Engineering at{' '}
-          <span className="font-medium text-gray-800">Shenzhen University</span>.
-        </p>
-        <p>
-          My research interests lie at the intersection of{' '}
-          <strong className="text-gray-800">artificial intelligence</strong>,{' '}
-          <strong className="text-gray-800">bioinformatics</strong>, and{' '}
-          <strong className="text-gray-800">computational biology</strong>.
-          I aim to leverage deep learning, protein language models, and
-          data-driven approaches to address fundamental problems in life sciences.
-        </p>
-        <p>
-          I am actively seeking graduate research opportunities where I can
-          contribute to cutting-edge research in AI-driven biology and medicine.
-        </p>
+    <section id="about" style={{ zIndex: 1, position: 'relative' }}>
+      <hr className="section-divider" />
+      <div className="content-col">
+        <div className="max-w-2xl space-y-3 text-sm text-slate-400 leading-relaxed">
+          <p>
+            Undergraduate student at{' '}
+            <strong className="text-slate-200 font-medium">Shenzhen University</strong>,
+            School of Medicine. Transitioned from Clinical Medicine to Biomedical
+            Engineering — bringing a dual perspective to computational biology.
+          </p>
+          <p>
+            I build AI-driven tools for biological sequence analysis, protein
+            function prediction, and biomedical data interpretation.
+          </p>
+        </div>
       </div>
     </section>
   );

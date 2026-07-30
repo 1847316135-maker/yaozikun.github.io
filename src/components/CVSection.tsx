@@ -1,22 +1,12 @@
-import { HiDownload, HiDocumentText } from 'react-icons/hi';
-
 export default function CVSection() {
   return (
-    <section id="cv" className="section-container border-t border-gray-100">
-      <div className="text-center">
-        <HiDocumentText className="mx-auto text-medical mb-4" size={40} />
-        <p className="section-subtitle text-center">Curriculum Vitae</p>
-        <h2 className="section-title mb-4 text-center">Full CV</h2>
-        <p className="text-gray-500 mb-6 max-w-md mx-auto">
-          Download my full curriculum vitae for details on education, research experience,
-          and academic background.
-        </p>
-        <a
-          href="/cv.pdf"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent-light transition-colors"
-          download
-        >
-          <HiDownload size={20} />
+    <section id="cv" style={{ zIndex: 1, position: 'relative' }}>
+      <hr className="section-divider" />
+      <div className="content-col text-center py-8">
+        <p className="section-label text-center">Curriculum Vitae</p>
+        <h2 className="section-title-main text-center mb-4">Full CV</h2>
+        <a href="/cv.pdf" className="btn-accent" download>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download CV (PDF)
         </a>
       </div>

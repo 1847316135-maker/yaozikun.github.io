@@ -1,49 +1,27 @@
-interface SkillCategory {
-  name: string;
-  skills: string[];
-}
-
-const skillCategories: SkillCategory[] = [
-  {
-    name: 'Programming',
-    skills: ['Python', 'C/C++', 'JavaScript', 'TypeScript'],
-  },
-  {
-    name: 'Bioinformatics',
-    skills: ['BLAST', 'Protein Sequence Analysis', 'Protein Language Models'],
-  },
-  {
-    name: 'AI & ML',
-    skills: ['PyTorch', 'Deep Learning', 'Machine Learning'],
-  },
-  {
-    name: 'Engineering',
-    skills: ['Linux', 'Docker', 'Git'],
-  },
+const groups = [
+  { label: 'Languages', items: 'Python, C, R' },
+  { label: 'AI / ML', items: 'PyTorch, Deep Learning, Protein LMs, LLM Apps' },
+  { label: 'Bioinformatics', items: 'BLAST, Sequence Analysis, HVR Detection, Phylogenetics' },
+  { label: 'Engineering', items: 'Linux Admin, Docker, Git, Web Dev' },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="section-container border-t border-gray-100">
-      <p className="section-subtitle">Skills</p>
-      <h2 className="section-title mb-8">Technical Skills</h2>
-
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {skillCategories.map((cat) => (
-          <div key={cat.name} className="card">
-            <h3 className="text-sm font-semibold text-medical uppercase tracking-wider mb-3">
-              {cat.name}
-            </h3>
-            <ul className="space-y-1.5">
-              {cat.skills.map((skill) => (
-                <li key={skill} className="text-sm text-gray-600 flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-accent/40 shrink-0" />
-                  {skill}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+    <section id="skills" style={{ zIndex: 1, position: 'relative' }}>
+      <hr className="section-divider" />
+      <div className="content-col">
+        <p className="section-label">Skills</p>
+        <h2 className="section-heading">Technical Competence</h2>
+        <div className="grid gap-4 md:grid-cols-2 max-w-2xl">
+          {groups.map((g) => (
+            <div key={g.label} className="flex items-baseline gap-3 text-sm">
+              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider w-24 shrink-0">
+                {g.label}
+              </span>
+              <span className="text-slate-300">{g.items}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
