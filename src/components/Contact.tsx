@@ -11,6 +11,12 @@ export default function Contact() {
               zikun.yao@yaozikun.top
             </a>
           </p>
+          <p>
+            <span className="text-slate-500">GitHub</span>{' '}
+            <a href="https://github.com/1847316135-maker" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">
+              github.com/1847316135-maker
+            </a>
+          </p>
           <p><span className="text-slate-500">Location</span> China</p>
         </div>
       </div>
