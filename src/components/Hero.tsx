@@ -1,7 +1,14 @@
 export default function Hero() {
   return (
     <section className="!py-0 relative overflow-hidden" style={{ zIndex: 1 }}>
-      <div className="content-col py-16 md:py-24">
+      {/* Background atmosphere blobs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-blue-500/4 blur-3xl" />
+        <div className="absolute top-20 right-60 w-[300px] h-[300px] rounded-full bg-cyan-500/5 blur-2xl" />
+        <div className="absolute -bottom-20 left-1/3 w-[400px] h-[400px] rounded-full bg-violet-500/3 blur-3xl" />
+      </div>
+
+      <div className="content-col py-16 md:py-24 relative">
         <div className="grid md:grid-cols-[1fr_auto] gap-10 lg:gap-16 items-center">
 
           {/* ── Left: Text ── */}
@@ -30,7 +37,7 @@ export default function Hero() {
               <p className="text-[0.65rem] font-semibold text-slate-500 uppercase tracking-widest mb-2">Focus</p>
               <div className="flex flex-wrap gap-2">
                 {['Protein Language Models', 'Bioinformatics', 'Biomedical AI'].map((f) => (
-                  <span key={f} className="text-xs px-3 py-1 rounded-full border border-slate-700 text-slate-300 bg-slate-900/50">
+                  <span key={f} className="text-xs px-3 py-1 rounded-full border border-slate-700 text-slate-300 bg-slate-900/50 hover:border-slate-500 hover:text-white transition-all cursor-default">
                     {f}
                   </span>
                 ))}
@@ -54,51 +61,43 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* ── Right: Large photo with orbital halo ── */}
+          {/* ── Right: Silhouette photo floating with glow ── */}
           <div className="flex justify-center anim-up anim-up-2">
-            <div className="relative flex items-center justify-center" style={{ width: 340, height: 340 }}>
-              {/* Outer glow ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/15 via-cyan-500/10 to-transparent blur-2xl anim-glow" />
+            <div className="relative flex items-center justify-center" style={{ width: 360, height: 420 }}>
+              {/* Multi-layer glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-80 rounded-full bg-blue-500/8 blur-3xl" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-64 rounded-full bg-cyan-500/6 blur-2xl" />
 
-              {/* Molecular orbit rings */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 340 340" fill="none">
-                {/* Ring 1 */}
-                <ellipse cx="170" cy="170" rx="150" ry="60" stroke="#3b82f6" strokeWidth="0.4" opacity="0.15"
-                  strokeDasharray="8 6" transform="rotate(-15 170 170)">
-                  <animateTransform attributeName="transform" type="rotate" from="-15 170 170" to="345 170 170" dur="30s" repeatCount="indefinite"/>
+              {/* Orbital rings behind photo */}
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 360 420" fill="none">
+                <ellipse cx="180" cy="200" rx="155" ry="180" stroke="#3b82f6" strokeWidth="0.3" opacity="0.1"
+                  strokeDasharray="6 8" transform="rotate(-20 180 200)">
+                  <animateTransform attributeName="transform" type="rotate" from="-20 180 200" to="340 180 200" dur="35s" repeatCount="indefinite"/>
                 </ellipse>
-                {/* Ring 2 */}
-                <ellipse cx="170" cy="170" rx="150" ry="60" stroke="#06b6d4" strokeWidth="0.4" opacity="0.12"
-                  strokeDasharray="4 10" transform="rotate(45 170 170)">
-                  <animateTransform attributeName="transform" type="rotate" from="45 170 170" to="405 170 170" dur="40s" repeatCount="indefinite"/>
+                <ellipse cx="180" cy="200" rx="140" ry="165" stroke="#06b6d4" strokeWidth="0.3" opacity="0.08"
+                  strokeDasharray="4 12" transform="rotate(40 180 200)">
+                  <animateTransform attributeName="transform" type="rotate" from="40 180 200" to="400 180 200" dur="45s" repeatCount="indefinite"/>
                 </ellipse>
-                {/* Ring 3 */}
-                <ellipse cx="170" cy="170" rx="135" ry="50" stroke="#60a5fa" strokeWidth="0.3" opacity="0.1"
-                  strokeDasharray="3 12" transform="rotate(75 170 170)">
-                  <animateTransform attributeName="transform" type="rotate" from="75 170 170" to="435 170 170" dur="35s" repeatCount="indefinite"/>
-                </ellipse>
-                {/* Small nodes on rings */}
-                {[30, 120, 210, 300].map((angle, i) => {
+                {/* Floating nodes */}
+                {[0, 72, 144, 216, 288].map((angle, i) => {
                   const rad = (angle * Math.PI) / 180;
-                  const cx = 170 + 135 * Math.cos(rad);
-                  const cy = 170 + 50 * Math.sin(rad);
+                  const cx = 180 + 130 * Math.cos(rad);
+                  const cy = 200 + 150 * Math.sin(rad);
                   return (
-                    <circle key={i} cx={cx} cy={cy} r="2" fill={i % 2 === 0 ? '#3b82f6' : '#06b6d4'} opacity="0.3">
-                      <animate attributeName="opacity" values="0.3;0.6;0.3" dur={`${2 + i}s`} repeatCount="indefinite"/>
+                    <circle key={i} cx={cx} cy={cy} r="1.5" fill={i % 3 === 0 ? '#3b82f6' : i % 3 === 1 ? '#06b6d4' : '#60a5fa'} opacity="0.2">
+                      <animate attributeName="opacity" values="0.15;0.4;0.15" dur={`${2 + i * 0.5}s`} repeatCount="indefinite"/>
                     </circle>
                   );
                 })}
               </svg>
 
-              {/* Photo */}
-              <div className="relative w-60 h-60 md:w-[280px] md:h-[280px] rounded-full overflow-hidden border border-slate-700/30"
-                style={{ boxShadow: '0 0 60px rgba(59,130,246,0.12), 0 0 120px rgba(59,130,246,0.05)' }}>
-                <img
-                  src="/yaozikun.png"
-                  alt="Zikun Yao"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              {/* Photo — no container, transparent PNG silhouette */}
+              <img
+                src="/yaozikun.png"
+                alt="Zikun Yao"
+                className="relative z-10 w-auto h-[380px] max-w-[320px] object-contain drop-shadow-[0_0_60px_rgba(59,130,246,0.15)]"
+                style={{ filter: 'drop-shadow(0 0 30px rgba(59,130,246,0.12)) drop-shadow(0 20px 40px rgba(0,0,0,0.3))' }}
+              />
             </div>
           </div>
 
